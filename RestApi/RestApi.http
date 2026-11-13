@@ -1,6 +1,144 @@
 @RestApi_HostAddress = http://localhost:5205
 
-GET {{RestApi_HostAddress}}/weatherforecast/
+### 1. Obtener todos los productos en memoria
+GET {{RestApi_HostAddress}}/productos
 Accept: application/json
 
 ###
+
+### 2. Obtener todas las categorías
+GET {{RestApi_HostAddress}}/categorias
+Accept: application/json
+
+###
+
+### 3. Obtener categoría por ID
+GET {{RestApi_HostAddress}}/categorias/1
+Accept: application/json
+
+###
+
+### 4. Crear nueva categoría
+POST {{RestApi_HostAddress}}/categorias
+Content-Type: application/json
+
+{
+  "nombre": "Postres Especiales"
+}
+
+###
+
+### 5. Actualizar categoría existente
+PUT {{RestApi_HostAddress}}/categorias/1
+Content-Type: application/json
+
+{
+  "nombre": "Entradas Calientes"
+}
+
+###
+
+### 6. Obtener platos de una categoría
+GET {{RestApi_HostAddress}}/categorias/1/platos
+Accept: application/json
+
+###
+
+### 7. Obtener todos los platos activos (Disponible = 1)
+GET {{RestApi_HostAddress}}/platos
+Accept: application/json
+
+###
+
+### 8. Obtener plato por ID
+GET {{RestApi_HostAddress}}/platos/1
+Accept: application/json
+
+###
+
+### 9. Crear nuevo plato
+POST {{RestApi_HostAddress}}/platos
+Content-Type: application/json
+
+{
+  "nombre": "Tacos al Pastor",
+  "descripcion": "Orden de 4 tacos con piña, cebolla y cilantro",
+  "precio": 8.50,
+  "categoriaId": 1
+}
+
+###
+
+### 10. Actualizar plato existente
+PUT {{RestApi_HostAddress}}/platos/1
+Content-Type: application/json
+
+{
+  "nombre": "Tacos al Pastor Clásicos",
+  "descripcion": "Orden de 4 tacos con doble tortilla y salsa casera",
+  "precio": 9.00,
+  "categoriaId": 1
+}
+
+###
+
+### 11. Eliminar plato (Borrado lógico: Disponible = 0)
+DELETE {{RestApi_HostAddress}}/platos/1
+
+###
+### ==========================================
+### ENDPOINTS DE MESAS Y QR
+### ==========================================
+
+### 12. Obtener todas las mesas
+GET {{RestApi_HostAddress}}/mesas
+Accept: application/json
+
+###
+
+### 13. Obtener mesa por ID
+GET {{RestApi_HostAddress}}/mesas/1
+Accept: application/json
+
+###
+
+### 14. Crear nueva mesa
+POST {{RestApi_HostAddress}}/mesas
+Content-Type: application/json
+
+{
+  "numero": 1,
+  "capacidad": 4
+}
+
+###
+
+### 15. Actualizar mesa existente
+PUT {{RestApi_HostAddress}}/mesas/1
+Content-Type: application/json
+
+{
+  "numero": 1,
+  "capacidad": 6
+}
+
+###
+
+### 16. Visualizar QR en navegador (PNG directo)
+GET {{RestApi_HostAddress}}/mesas/1/qr
+
+###
+
+### 17. Descargar imagen QR como archivo
+GET {{RestApi_HostAddress}}/mesas/1/qr?download=true
+
+###
+
+### 18. Ver visor HTML interactivo con el QR
+GET {{RestApi_HostAddress}}/mesas/1/visor
+
+###
+
+### 19. Eliminar mesa
+DELETE {{RestApi_HostAddress}}/mesas/1
+

@@ -1,18 +1,17 @@
-﻿using RestApi.Datos;
+﻿namespace RestApi.Negocio;
+
+using RestApi.Datos;
 using RestApi.Entidades;
 
-namespace RestApi.Negocio
+/// <summary>
+/// Capa de negocio para productos de inventario.
+/// Depende de la interfaz IProductoRepositorio.
+/// </summary>
+public class ProductoServicio(IProductoRepositorio repo)
 {
-    public class ProductoServicio
-    {
-        private readonly ProductoRepositorio _repo;
-
- 
-        public ProductoServicio(ProductoRepositorio repo)
-        {
-            _repo = repo;
-        }
-        public List<Producto> ListarDisponibles() =>
-            _repo.ObtenerTodos().Where(p => p.Stock > 0).ToList();
-    }
+    /// <summary>
+    /// Retorna los productos que tienen existencia en stock mayor a cero.
+    /// </summary>
+    public List<Producto> ListarDisponibles() =>
+        repo.ObtenerTodos().Where(p => p.Stock > 0).ToList();
 }
